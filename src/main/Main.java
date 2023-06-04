@@ -26,54 +26,43 @@ public class Main {
 		return false;
 	}
 	
-	public static void enviarEmail(Usuario usr)
-	{
-		System.out.println("\n========================");
-		System.out.println("       Novo E-mail        ");
-		System.out.println("========================\n");
-		
-		System.out.print("\n >> Destinatario: ");
-		String destinatario = input.nextLine();	
-		System.out.print(" >> Assunto: ");
-		String assunto = input.nextLine();	
-		System.out.print(" >> Mensagem: ");
-		String mensagem = input.nextLine();	
-		
-		Email email = new Email(destinatario, assunto, mensagem);
+	public static boolean enviarEmail(Usuario usr, Email email)
+	{	
 		email.setRemetente(usr.getEmail());
 		
-		if(emailEstaRegistrado(destinatario))
+		//if(emailEstaRegistrado(email.getDestinatario()))
+		if(!email.getDestinatario().isEmpty())
 		{
 			email.setId(serieId);
 			log.put(serieId, email);
 			serieId = serieId+17;
 			System.out.println(" > E-mail enviado com sucesso!");
+			return true;
 		}
 		else
 		{
 			System.out.println(" > Erro! E-mail informado não está registrado no sistema");
+			return false;
 		}
 	}
 	
-	public static void listarEmails(Usuario usr)
+	public static List<Email> listarEmails(Usuario usr)
 	{
-		System.out.println("\n========================");
-		System.out.println("     Listar E-mails      ");
-		System.out.println("========================\n");
+		List<Email> listaEmails = new ArrayList();
 		
-		System.out.println("\n > E-mails recebidos: ");
 		for(Email email : log.values())
 		{
 			if(email.getDestinatario().equals(usr.getEmail()))
-				System.out.println(" "+email.getId()+" - "+email.getRemetente()+" - "+email.getAssunto());
+				listaEmails.add(email);
 		}
 		
 		System.out.println("\n > E-mails enviados: ");
 		for(Email email : log.values())
 		{
 			if(email.getRemetente().equals(usr.getEmail()))
-				System.out.println(" "+email.getId()+" - "+email.getDestinatario()+" - "+email.getAssunto());
+				listaEmails.add(email);
 		}
+		return listaEmails;
 	}
 	
 	public static void abrirEmail(int id)
@@ -193,7 +182,7 @@ public class Main {
 				switch(prompt) 
 				{
 					case "1":
-						enviarEmail(usuarioLogado);
+						enviarEmail(usuarioLogado, new Email());
 						break;
 					case "2":
 						listarEmails(usuarioLogado);

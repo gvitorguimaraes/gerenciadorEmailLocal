@@ -47,7 +47,7 @@ public class Usuario {
 		{
 			String novaSenha = gerarSenhaAleatoria();
 			this.senha = novaSenha;
-			return "Senha alterada com sucesso, nova senha: "+senha;
+			return novaSenha;
 		}
 		return "Senha não alterada pois a senha informada não está correta!";
 	}
