@@ -26,6 +26,16 @@ public class Main {
 		return false;
 	}
 	
+	
+	
+	public static List<Email> listarEmails(Usuario usr)
+	{
+		return null;
+	}
+	
+	
+	
+	
 	public static boolean enviarEmail(Usuario usr, Email email)
 	{	
 		email.setRemetente(usr.getEmail());
@@ -44,25 +54,6 @@ public class Main {
 			System.out.println(" > Erro! E-mail informado não está registrado no sistema");
 			return false;
 		}
-	}
-	
-	public static List<Email> listarEmails(Usuario usr)
-	{
-		List<Email> listaEmails = new ArrayList();
-		
-		for(Email email : log.values())
-		{
-			if(email.getDestinatario().equals(usr.getEmail()))
-				listaEmails.add(email);
-		}
-		
-		System.out.println("\n > E-mails enviados: ");
-		for(Email email : log.values())
-		{
-			if(email.getRemetente().equals(usr.getEmail()))
-				listaEmails.add(email);
-		}
-		return listaEmails;
 	}
 	
 	public static void abrirEmail(int id)

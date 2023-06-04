@@ -14,42 +14,17 @@ public class Usuario {
 	
 	public String gerarEmail(String nome, String setor)
 	{
-		String[] nomeSep = nome.toLowerCase().split(" ");
-		
-		return nomeSep[0]+"."+nomeSep[nomeSep.length-1]+"@"+setor.toLowerCase()+".exemplo.com";
+		return "";
 	}
 	
 	public String gerarSenhaAleatoria()
 	{
-		String senha = "";
-		Random random = new Random();
-        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        
-        for (int i = 0; i < 8; i++) {
-            int randomCharIndex = random.nextInt(characters.length());
-            char randomChar = characters.charAt(randomCharIndex);
-            if(randomCharIndex % 2 == 0)
-            {
-            	senha = senha+Character.toUpperCase(randomChar);
-            }
-            else 
-            {
-            	senha = senha+Character.toLowerCase(randomChar);
-            }
-        }
-        
-		return senha;
+		return "";
 	}
 	
 	public String alterarSenha(String senha) {
 		
-		if(senha.equals(this.senha))
-		{
-			String novaSenha = gerarSenhaAleatoria();
-			this.senha = novaSenha;
-			return novaSenha;
-		}
-		return "Senha não alterada pois a senha informada não está correta!";
+		return "";
 	}
 	
 	
